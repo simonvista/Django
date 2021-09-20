@@ -124,3 +124,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# uploads/images folder will be created under project root folder
+MEDIA_ROOT=BASE_DIR / 'uploads'
+MEDIA_URL='/files/'
