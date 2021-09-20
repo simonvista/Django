@@ -11,5 +11,14 @@
 <body>
     <h1>all meetups</h1>
     <p>hello world</p>
+    {% comment %} django template language - dots every where -use interpolation to output context {% endcomment %}
+    {% if show_meetups %}    
+        {% comment %} <h2>{{meetups.0.title}}</h2> {% endcomment %}
+        {% for meetup in meetups %}
+            <p>{{ meetup.title }} </p>
+        {% endfor %}
+    {% else %}
+         <p>no meetups found</p>   
+    {% endif %}
 </body>
 </html>

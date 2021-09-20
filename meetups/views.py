@@ -4,4 +4,11 @@ from django.http import HttpResponse
 # Create your views here.
 def index(req):
     # return HttpResponse("Hello World")
-    return render(req,'meetups/index.html')
+    meetups=[
+        {'title':'1st meetup'},
+        {'title':'2nd meetup'},
+    ]
+    return render(req,'meetups/index.html',{
+        'show_meetups':True,
+        'meetups':meetups
+    })
