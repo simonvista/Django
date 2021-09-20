@@ -1,23 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Meetup
 
 # Create your views here.
 def index(req):
     # return HttpResponse("Hello World")
-    meetups=[
-        {
-            'title':'1st meetup',
-            'location':'New York',
-            'slug':'1st-meetup'
-        },
-        {
-            'title':'2nd meetup',
-            'location':'Paris',
-            'slug':'2nd-meetup'
-        },
-    ]
+    # fetch all meetups from DB
+    meetups=Meetup.objects.all()
+
     return render(req,'meetups/index.html',{
-        'show_meetups':True,
         'meetups':meetups
     })
 
