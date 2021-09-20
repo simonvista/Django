@@ -10,26 +10,30 @@
 {% endblock  %}
 
 {% block body %}
+  {% if meetup_found %}  
     <article>
-        <img src="" alt="" />
-        <section id="location">
-          <h2>meetup location</h2>
-          <address>
-            the location of this meetup: <span>LOCATION</span> (ADDRESS)
-          </address>
-        </section>
-        <section id="details">
-          <h2>meetup topics</h2>
-          <p>{{ meetup_description }}</p>
-          <footer>
-            <p>
-              need more details? please contact the <a href="">organizer</a>
-            </p>
-          </footer>
-        </section>
-        <section id="registration">
-          <h2>join us!</h2>
-          FORM
-        </section>
-      </article>
+      <img src="" alt="" />
+      <section id="location">
+        <h2>meetup location</h2>
+        <address>
+          the location of this meetup: <span>LOCATION</span> (ADDRESS)
+        </address>
+      </section>
+      <section id="details">
+        <h2>meetup topics</h2>
+        <p>{{ meetup_description }}</p>
+        <footer>
+          <p>
+            need more details? please contact the <a href="">organizer</a>
+          </p>
+        </footer>
+      </section>
+      <section id="registration">
+        <h2>join us!</h2>
+        FORM
+      </section>
+    </article>
+  {% else %}
+    <p>not meetup found for the slug you provided</p>
+  {% endif %}
 {% endblock %}     
