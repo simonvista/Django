@@ -16,7 +16,8 @@
     <h2>upcoming meetups</h2>
     <ol>
       {% for meetup in meetups %}
-        {% include 'meetups/includes/meetup-item.html' with title=meetup.title image=meetup.image.url location='New York' slug=meetup.slug %}     
+        {% comment %} {% include 'meetups/includes/meetup-item.html' with title=meetup.title image=meetup.image.url location='New York' slug=meetup.slug %}      {% endcomment %}
+        {% include 'meetups/includes/meetup-item.html' with title=meetup.title image=meetup.image.url location=meetup.location.name slug=meetup.slug %}     
       {% endfor %}
     </ol>
   </section>
