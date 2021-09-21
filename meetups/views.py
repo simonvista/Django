@@ -1,7 +1,7 @@
 from meetups.forms import RegistrationForm
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Meetup
+from .models import Meetup,Participant
 
 # Create your views here.
 def index(req):
@@ -21,7 +21,9 @@ def meetup_details(req,meetup_slug):
         else:
             registration_form=RegistrationForm(req.POST)
             if registration_form.is_valid():
-                participant=registration_form.save()    # save form data to DB
+                # participant=registration_form.save()    # save form data to DB -> participant email can be used only once
+                user_email=registration_form.cleaned_data['email']
+                participant,_=Participant.objects.get_or_create(email=user_email)
                 selected_meetup.participants.add(participant)
                 return redirect('confirm-registration')
         return render(req,'meetups/meetup-details.html',{
