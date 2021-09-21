@@ -16,12 +16,18 @@ def index(req):
 def meetup_details(req,meetup_slug):   
     try:
         selected_meetup=Meetup.objects.get(slug=meetup_slug)
-        registration_form=RegistrationForm()
+        if req.method=='GET':
+            registration_form=RegistrationForm()            
+        else:
+            registration_form=RegistrationForm(req.POST)
+            if registration_form.is_valid():
+                participant=registration_form.save()    # save form data to DB
+                selected_meetup.participants.add(participant)
         return render(req,'meetups/meetup-details.html',{
-            'meetup_found':True,
-            'meetup':selected_meetup,
-            'form':registration_form
-        })
+                'meetup_found':True,
+                'meetup':selected_meetup,
+                'form':registration_form
+            })
     except Exception as exc:
         return render(req,'meetups/meetup-details.html',{
             'meetup_found':False
